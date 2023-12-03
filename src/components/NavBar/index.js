@@ -12,7 +12,7 @@ const NavBar = props => {
           alt="emoji logo"
           className="emoji-logo-img"
         />
-        <p className="emoji-game">Emoji Game</p>
+        <h1 className="emoji-game">Emoji Game</h1>
       </div>
       <div className="scores-container">
         <p className="">Score: {score}</p>
@@ -23,3 +23,4 @@ const NavBar = props => {
 }
 
 export default NavBar
+
