@@ -21,9 +21,13 @@ const WinOrLoseCard = props => {
           </button>
         </div>
       </div>
-      <img src={resultImage} alt="..." className="result-image" />
+      <div>
+        <img src={resultImage} alt="..." className="result-image" />
+      </div>
     </div>
   )
 }
 
 export default WinOrLoseCard
+
+
