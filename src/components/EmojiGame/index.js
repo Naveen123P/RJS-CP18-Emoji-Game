@@ -46,3 +46,4 @@ class EmojiGame extends Component {
 }
 
 export default EmojiGame
+ 
