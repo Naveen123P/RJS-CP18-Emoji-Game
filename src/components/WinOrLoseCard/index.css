@@ -19,7 +19,11 @@
   border-radius: 5px;
   padding: 5px;
 }
+.results-container2 {
+  display: flex;
+  justify-content: space-around;
+}
 .result-image {
-  height: 100%;
-  width: 50%;
+  height: 300px;
+  width: 400px;
 }
