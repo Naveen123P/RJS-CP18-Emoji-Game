@@ -1,0 +1,30 @@
+/* Write your code here. */
+.navbar-container {
+  width: 100%;
+  height: 20px;
+  background-color: #ffffff33;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.emoji-logo-container {
+  height: 100%;
+  width: 150px;
+  display: flex;
+  align-items: center;
+}
+.emoji-logo-img {
+  height: 10px;
+  width: 10px;
+}
+* {
+  color: aliceblue;
+  font-weight: bold;
+}
+.scores-container {
+  height: 100%;
+  width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

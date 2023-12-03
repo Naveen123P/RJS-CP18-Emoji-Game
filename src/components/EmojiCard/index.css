@@ -1,0 +1,21 @@
+/* Write your code here. */
+
+.emoji-container {
+  list-style-type: none;
+  height: 80px;
+  width: 80px;
+  background-color: #ffffff33;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2px;
+}
+.emoji-button {
+  border: none;
+  background-color: transparent;
+}
+.emoji-img {
+  height: 50px;
+  width: 50px;
+}
