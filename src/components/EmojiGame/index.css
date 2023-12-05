@@ -15,8 +15,3 @@ body {
   flex-wrap: wrap;
   width: 400px;
 }
-.result-container {
-  background-color: #ffffff33;
-  border-radius: 20px;
-  margin: 30px 20px;
-}
