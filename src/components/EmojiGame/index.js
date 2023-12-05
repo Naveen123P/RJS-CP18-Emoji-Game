@@ -8,6 +8,10 @@ const shuffledEmojisList = () => {
   return emojisList.sort(() => Math.random() - 0.5)
 }
 
+if (Score > TopScore) {
+      return this.setState({TopScore: Score})
+    }
+
 */
 
 // Write your code here.
@@ -19,10 +23,32 @@ import NavBar from '../NavBar'
 import WinOrLoseCard from '../WinOrLoseCard'
 
 class EmojiGame extends Component {
-  state = {Score: 0, TopScore: 0}
+  state = {Score: 0, TopScore: 0, ShowResult: false, clickedEmojis: []}
+
+  getClickedEmojis = id => {
+    const {clickedEmojis, Score, TopScore} = this.state
+    const isClickedEmoji = clickedEmojis.includes(id)
+    console.log(isClickedEmoji, Score, TopScore)
+    if (!isClickedEmoji) {
+      return this.setState(prevState => ({
+        Score: prevState.Score + 1,
+        clickedEmojis: [...prevState.clickedEmojis, id],
+      }))
+    }
+    return this.setState(prevState => ({ShowResult: !prevState.ShowResult}))
+  }
+
+  onClickPlayAgain = () => {
+    this.setState(prevState => ({
+      Score: 0,
+      TopScore: prevState.TopScore,
+      ShowResult: false,
+      clickedEmojis: [],
+    }))
+  }
 
   render() {
-    const {Score, TopScore} = this.state
+    const {Score, TopScore, ShowResult} = this.state
     const shuffledEmojisList = () => {
       const {emojisList} = this.props
       return emojisList.sort(() => Math.random() - 0.5)
@@ -31,19 +57,27 @@ class EmojiGame extends Component {
 
     return (
       <div className="bg-container1">
-        <NavBar score={Score} topScore={TopScore} />
-        <ul className="emoji-cards-container">
-          {shuffledEmojisList2.map(each => (
-            <EmojiCard key={each.id} emojiDetails={each} />
-          ))}
-        </ul>
-        <div className="result-container">
-          <WinOrLoseCard score={Score} />
-        </div>
+        <NavBar score={Score} topScore={TopScore} showResult={ShowResult} />
+        {!ShowResult && (
+          <ul className="emoji-cards-container">
+            {shuffledEmojisList2.map(each => (
+              <EmojiCard
+                key={each.id}
+                emojiDetails={each}
+                getClickedEmojis={this.getClickedEmojis}
+              />
+            ))}
+          </ul>
+        )}
+        {ShowResult && (
+          <WinOrLoseCard
+            score={Score}
+            onClickPlayAgain={this.onClickPlayAgain}
+          />
+        )}
       </div>
     )
   }
 }
 
 export default EmojiGame
- 
