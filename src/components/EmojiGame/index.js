@@ -34,6 +34,9 @@ class EmojiGame extends Component {
         Score: prevState.Score + 1,
         clickedEmojis: [...prevState.clickedEmojis, id],
       }))
+      if (Score > TopScore) {
+        this.setState({TopScore: Score})
+      }
     }
     return this.setState(prevState => ({ShowResult: !prevState.ShowResult}))
   }
