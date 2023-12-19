@@ -2,7 +2,7 @@
 import './index.css'
 
 const WinOrLoseCard = props => {
-  const {score, topScore, onClickPlayAgain} = props
+  const {score, onClickPlayAgain} = props
   const resultsText = score === 12 ? 'You Won' : 'You Lose'
   const resultImage =
     score === 12
@@ -18,7 +18,7 @@ const WinOrLoseCard = props => {
       <div className="results-container2">
         <div className="score-container">
           <h1>{resultsText}</h1>
-          <p>{topScore >= score ? 'Best Score' : 'Score'}</p>
+          <p>{score === 12 ? 'Best Score' : 'Score'}</p>
           <p className="final-score">{score}/12</p>
           <div>
             <button

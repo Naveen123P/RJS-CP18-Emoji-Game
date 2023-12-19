@@ -1,6 +1,21 @@
-/* 
-Quick Tip 
+/*
+ onChangeShowResult = () => {
+    this.setState({ShowResult: true})
+  }
 
+componentDidUpdate() {
+    const {Score} = this.state
+    if (Score === 12) {
+      return this.setState({ShowResult: true})
+    }
+    return this.setState(prevState => ({ShowResult: prevState.ShowResult}))
+  }
+
+ Score === 12
+      ? this.setState(prevState => ({ShowResult: !prevState.showResult}))
+      : this.setState(prevState => ({ShowResult: prevState.ShowResult}))
+Quick Tip 
+ 
 - Use the below function in the EmojiGame Component to shuffle the emojisList every time when an emoji is clicked.
 
 const shuffledEmojisList = () => {
@@ -29,16 +44,17 @@ class EmojiGame extends Component {
     const {clickedEmojis, Score, TopScore} = this.state
     const isClickedEmoji = clickedEmojis.includes(id)
     console.log(isClickedEmoji, Score, TopScore)
-    if (!isClickedEmoji) {
+    const topScore = TopScore > Score ? TopScore : Score
+    if (isClickedEmoji) {
       return this.setState(prevState => ({
-        Score: prevState.Score + 1,
-        clickedEmojis: [...prevState.clickedEmojis, id],
+        ShowResult: !prevState.ShowResult,
+        TopScore: topScore,
       }))
-      if (Score > TopScore) {
-        this.setState({TopScore: Score})
-      }
     }
-    return this.setState(prevState => ({ShowResult: !prevState.ShowResult}))
+    return this.setState(prevState => ({
+      Score: prevState.Score + 1,
+      clickedEmojis: [...prevState.clickedEmojis, id],
+    }))
   }
 
   onClickPlayAgain = () => {
@@ -72,7 +88,7 @@ class EmojiGame extends Component {
             ))}
           </ul>
         )}
-        {ShowResult && (
+        {(ShowResult || Score === 12) && (
           <WinOrLoseCard
             score={Score}
             onClickPlayAgain={this.onClickPlayAgain}
