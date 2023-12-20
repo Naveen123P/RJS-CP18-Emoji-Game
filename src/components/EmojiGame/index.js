@@ -41,20 +41,29 @@ class EmojiGame extends Component {
   state = {Score: 0, TopScore: 0, ShowResult: false, clickedEmojis: []}
 
   getClickedEmojis = id => {
-    const {clickedEmojis, Score, TopScore} = this.state
+    const {emojisList} = this.props
+    const {clickedEmojis} = this.state
     const isClickedEmoji = clickedEmojis.includes(id)
-    console.log(isClickedEmoji, Score, TopScore)
-    const topScore = TopScore > Score ? TopScore : Score
+    const clickedEmojisLength = clickedEmojis.length
     if (isClickedEmoji) {
-      return this.setState(prevState => ({
-        ShowResult: !prevState.ShowResult,
-        TopScore: topScore,
+      this.finishGameAndSetTopScore(clickedEmojisLength)
+    } else {
+      if (emojisList.length - 1 === clickedEmojisLength) {
+        this.finishGameAndSetTopScore(emojisList.length)
+      }
+      this.setState(prevState => ({
+        clickedEmojis: [...prevState.clickedEmojis, id],
       }))
     }
-    return this.setState(prevState => ({
-      Score: prevState.Score + 1,
-      clickedEmojis: [...prevState.clickedEmojis, id],
-    }))
+  }
+
+  finishGameAndSetTopScore = topScore => {
+    const {clickedEmojis, Score, TopScore} = this.state
+    if (topScore > TopScore) {
+      this.setState({Score: topScore, TopScore: topScore})
+    } else {
+      this.setState({Score: topScore})
+    }
   }
 
   onClickPlayAgain = () => {
