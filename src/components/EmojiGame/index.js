@@ -106,7 +106,7 @@ class EmojiGame extends Component {
             ))}
           </ul>
         )}
-        {(ShowResult || Score === 12) && (
+        {ShowResult && (
           <WinOrLoseCard
             score={Score}
             onClickPlayAgain={this.onClickPlayAgain}

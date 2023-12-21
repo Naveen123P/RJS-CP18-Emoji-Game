@@ -3,7 +3,7 @@ import './index.css'
 
 const NavBar = props => {
   const {score, topScore, showResult} = props
-  const toNavBarScore = showResult ? 'hide' : ''
+
   return (
     <div className="navbar-container">
       <div className="emoji-logo-container">
@@ -14,10 +14,14 @@ const NavBar = props => {
         />
         <h1 className="emoji-game">Emoji Game</h1>
       </div>
-      <div className={`scores-container ${toNavBarScore}`}>
-        <p className="">Score: {score}</p>
-        <p className="">Top Score: {topScore}</p>
-      </div>
+      {showResult ? (
+        ''
+      ) : (
+        <div className="scores-container">
+          <p className="">Score: {score}</p>
+          <p className="">Top Score: {topScore}</p>
+        </div>
+      )}
     </div>
   )
 }
